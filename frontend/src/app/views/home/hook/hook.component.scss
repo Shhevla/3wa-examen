@@ -1,0 +1,62 @@
+#hook-container {
+    width: 100%;
+    height: 300px;
+    @media screen and (min-width: 1024px) {
+        height: 400px;
+    }
+}
+
+#hook-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#hook-picture {
+    height: 100%;
+    display: none;
+    @media screen and (min-width: 550px) {
+        display: initial;
+    }
+}
+
+#hook-caption {
+    color: #2c2c39;
+    margin: auto 0;
+    font-family: Montserrat-light, sans-serif;
+    font-size: 2em;
+    line-height: 1em;
+    @media screen and (min-width: 768px) {
+        font-size: 2.5em;
+    }
+    @media screen and (min-width: 1024px) {
+        font-size: 3em;
+    }
+    @media screen and (min-width: 1440px) {
+        font-size: 4.5em;
+    }
+}
+
+#hook-caption strong::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background-image: url(../../../../assets/ressources/icons/check-icon.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    @media screen and (min-width: 1024px) {
+        width: 80px;
+        height: 80px;
+    }
+    @media screen and (min-width: 1440px) {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+#hook-caption span {
+    font-family: Montserrat-Bold;
+}

@@ -1,0 +1,28 @@
+<div id="informations-container">
+    <div id="left-part">
+        <div class="filter"></div>
+        <img src="../../assets/ressources/images/user_info.png" alt="Logo Bagas section profesionnel">
+        <button class="top-button" (click)="toggleLeftDisplay()" id="top-left-button">En savoir plus</button>
+    </div>
+    <div class="info" id="left-info" [style.max-height]="leftHeight">
+        <div class="user" id="user-pink"></div>
+        <div class="line" id="line-1"></div>
+        <p>Dès votre inscription, vos rendez-vous sont réservables en ligne. Depuis votre espace personnel vous avez accès à votre agenda et à l’historique de vos rendez-vous. <br> <br> Vous avez la possibilité de décaler ou annuler un rendez-vous sans frais
+            jusqu'à 24h à l'avance. Avec le prépaiement, vous ne serez débité qu'une fois le rendez-vous honoré.
+        </p>
+        <button class="bottom-button">Contactez-nous</button>
+    </div>
+    <div id="right-part">
+        <div class="filter"></div>
+        <img src="../../assets/ressources/images/pro_info.png" alt="Logo Bagas section profesionnel">
+        <button class="top-button" (click)="toggleRightDisplay()" id="top-right-button">En savoir plus</button>
+    </div>
+    <div class="info" id="right-info" [style.max-height]="rightHeight">
+        <div class="user" id="user-blue"></div>
+        <div class="line" id="line-2"></div>
+        <p>Dès votre inscription vos clients peuvent prendre rendez-vous en ligne. Vous pouvez consultez et gérer votre agenda à tout moment l'historique de vos rendez-vous est également accessible depuis votre espace professionnel. <br> <br> Le prépaiement
+            améliore votre relation client et vous fait gagner un temps précieux. Aucun frais fixe / pas d’abonnement / sans engagement
+        </p>
+        <button class="bottom-button">Contactez-nous</button>
+    </div>
+</div>

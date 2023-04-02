@@ -1,0 +1,108 @@
+.container {
+    display: flex;
+    background-color: #F5F7F9;
+    border-radius: 20px;
+    padding-bottom: 20px;
+    height: 634px;
+
+    .hours-container {
+        display: flex;
+        flex-direction: column;
+        width: 5%;
+        min-width: 70px;
+        box-sizing: border-box;
+        padding: 0 15px;
+        margin-top: 40px;
+        gap: 2px;
+
+        .hours-sub-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            .hour {
+                height: 10px;
+                font-size: 0.6rem;
+                width: calc(100% + 15px);
+            }
+    
+            .main {
+                font-weight: bold;
+                font-size: 0.7rem;
+                box-sizing: border-box;
+                border-top: 1px solid #DBE5EC;
+            }        
+        }
+    }
+
+    .days-container {
+        display: flex;
+        gap: 10px;
+        width: 95%;
+        justify-content: space-evenly;
+
+        .actual-day {
+            background-color: #d3e0e7;
+        }
+
+        .day-container {
+            width: 100%;
+            text-align: center;
+            padding: 0 5px;
+            border-radius: 10px;
+
+            .day-title {
+                height: 40px;
+                line-height: 40px;
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+
+            .lines-container {
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                position: relative;
+
+                .hours-line-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+
+                    .line {
+                        background-color: #DBE5EC;
+                        width: 100%;
+                        height: 10px;
+
+                        &:hover {
+                            background-color: #A9C2D0;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .appointment-container {
+                    position: absolute;
+                    width: 100%;
+                }
+
+                .appointment {
+                    top: 36px;
+                    min-height: 10px;
+                    width: 100%;
+                    position: absolute;
+                    background-color: rgb(80, 80, 131);
+                    display: flex;
+                    justify-content: left;
+
+                    .name {
+                        color: white;
+                        font-size: 0.5rem;
+                        padding: 0 5px;
+                    }
+                }
+            }
+        }
+    }
+}

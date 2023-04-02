@@ -1,0 +1,16 @@
+<div class="global-container">
+    <div class="month">
+    </div>
+    <div class="calendar">
+        <div class="date-case">Lundi</div>
+        <div class="date-case">Mardi</div>
+        <div class="date-case">Mercredi</div>
+        <div class="date-case">Jeudi</div>
+        <div class="date-case">Vendredi</div>
+        <div class="date-case">Samedi</div>
+        <div class="date-case">Dimanche</div>
+        <div class="case" *ngFor="let day of globalDays">
+            {{ day }}
+        </div>
+    </div>
+</div>

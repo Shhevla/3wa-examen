@@ -1,0 +1,159 @@
+<div class="modals">
+    <div class="practitioner-modal">
+        <div class="modal" id="practitioner-modal" (click)="hideModal('archive-modal-content', 'archive-modal')">
+        </div>
+        <div class="modal-content" id="practitioner-modal-content">
+            <div class="modal-title">Ajouter un nouveau praticien</div>
+            <form [formGroup]="invitePractitionerForm" (ngSubmit)="invitePractitioner()">
+                <label for="email" class="content-label">adresse mail</label>
+                <textarea type="text" class="editable-content" formControlName="email" contenteditable="true"></textarea>
+            </form>
+            <button class="confirmation-button">Ajouter</button>
+            <button class="confirmation-button">Annuler</button>
+        </div>
+    </div>
+    <div class="delete-worker-modal" id="modal-container">
+        <div class="title">Supprimer un praticien</div>
+        <div class="fields-container">
+            <div class="label">Êtes-vous sûr de vouloir supprimer ce praticien ?</div>
+            <button class="button" (click)="delWorker()">Supprimer</button>
+        </div>
+    </div>
+    <div class="delete-worker-modal" id="cabinet-modal-container">
+        <div class="title">Supprimer un cabinet</div>
+        <div class="fields-container">
+            <div class="label">Êtes-vous sûr de vouloir supprimer ce cabinet ?</div>
+            <button class="button" (click)="removeCabinet()">Supprimer</button>
+        </div>
+    </div>
+</div>
+
+<div class="switch-mode-button-bis">
+    <button class="module-button" (click)="changeToProfile()">
+        <span class="left-button-label">Profil</span>
+        <div class="icon profileIcon"></div>
+    </button>
+    <button class="module-button" (click)="changeToManagementTest()">
+        <span class="left-button-label">Gestion</span>
+        <div class="icon managementIcon"></div>
+    </button>
+</div>
+<div class="profile-container">
+    <div class="sub-profile-container">
+        <div class="profile-part" id="profile-container">
+            <div class="profile-title">Profil</div>
+            <div class="loading-container" *ngIf="user == null">
+                <div class="loading"></div>
+            </div>
+            <div class="profile-informations-container" *ngIf="user != null">
+                <div class="profile-label-container">
+                    <div class="half-profile-informations-container">
+                        <div class="profile-information-text">
+                            <div class="label">Nom</div>
+                            <input class="text" [(ngModel)]="user.information.lname">
+                        </div>
+                        <div class="profile-information-text">
+                            <div class="label">Email</div>
+                            <input class="text"> <!-- {{user.information.email}} -->
+                        </div>
+                        <div class="profile-information-text">
+                            <div class="label">Date de naissance</div>
+                            <input class="text" [(ngModel)]="user.information.birthday">
+                        </div>
+                        <div class="profile-information-text">
+                            <div class="label">Adresse professionnelle</div>
+                            <input class="text" [(ngModel)]="user.information.adress">
+                        </div>
+                        <div class="profile-information-text">
+                            <div class="label">Code postal</div>
+                            <input class="text"> <!-- {{user.information.postal_code}} -->
+                        </div>
+                        <div class="profile-information-text">
+                            <div class="label ">Numéro d'ordre</div>
+                            <input class="text" [(ngModel)]="user.information.order">
+                        </div>
+                    </div>
+                    <div class="half-profile-informations-container">
+                        <div class="profile-information-text">
+                            <div class="label">Prénom</div>
+                            <input class="text" [(ngModel)]="user.information.fname">
+                        </div>
+                        <div class="profile-information-text">
+                            <div class="label">Teléphone</div>
+                            <input class="text" [(ngModel)]="user.information.tel">
+                        </div>
+                        <div class="profile-information-text">
+                            <div class="label">Lieu de naissance</div>
+                            <input class="text" [(ngModel)]="user.information.birth_location">
+                        </div>
+                        <div class="profile-information-text">
+                            <div class="label">Complément d'addresse (falcutatif)</div>
+                            <input class="text"> <!-- {{user.information.adress_complement}} -->
+                        </div>
+                        <div class="profile-information-text">
+                            <div class="label">Ville</div>
+                            <input class="text"> <!-- {{user.information.city}} -->
+                        </div>
+                        <div class="profile-information-text">
+                            <div class="label">Département d'inscription à l'ordre</div>
+                            <input class="text" [(ngModel)]="user.information.order_city">
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-information-text siret">
+                    <div class="label">Numéro de SIRET</div>
+                    <input class="text" [(ngModel)]="user.information.siret">
+                </div>
+                <button class="add-modification-button" (click)="applyModifications()">Enregistrer</button>
+            </div>
+        </div>
+        <div class="location-management-part " id="location-management">
+            <div class="management-title">Gestion</div>
+            <div class="mangagement-switch-mode-button ">
+                <select class="select-button " (change)="onChangeLocation($event)">
+                    <option class="hide" [value]=0>Choisir une région</option>
+                    <option class="location-button" *ngFor="let location of locations" [value]="location">{{location}}</option>
+                </select>
+                <button *ngIf="cityLocation !=null && cityLocation !='0'">Ajouter un praticien</button>
+            </div>
+            <div id="location-part" class='location-part'>
+                <div class="practitioner-container">
+                    <div class="practitioner-line" *ngFor="let practitioner of practitioners">
+                        <div class="practitioner">
+                            <div class="practitioner-back-color" [style.background-color]=practitioner.color></div>
+                            {{practitioner.firstName}}
+                            <button class="modify-button">modifier</button>
+                            <button class="delete-button">supprimer</button>
+                        </div>
+                        <div class="separating-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test management cabinet Need to be moved to another component -->
+        <div class="location-management-part" id="location-management-test" *ngIf="user != null">
+            <div id="create-cabinet-id" [ngClass]="{'disabled': !stop}">
+                <app-cabinet-manager></app-cabinet-manager>
+            </div>
+            <div class="management-title">Gestion</div>
+            <div class="sub-management-container">
+                <div class="mangagement-switch-mode-button">
+                    <button (click)="showCreateCabinet()">Ajouter un nouveau cabinet</button>
+                </div>
+                <div id="location-part" class='location-part'  *ngFor="let data of allCabinet, let index = index">
+                    <div class="location-line" *ngIf="data != undefined">
+                        <div class="data-name" (click)="showOptionCabinet(index); setSelectedCabinet(data, index)">{{data.name}}</div>
+                        <div [id]="'cabinet-option-id-' + index" class="cabinet-option" *ngIf="CabinetCheck[index]">
+                            <app-cabinet-option [cabinetData]=data [cabinetId]=allId[index] [cabinetPath]=allPath[index]></app-cabinet-option>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-background" id="create-cabinet-back" (click)="hideAll()"></div>
+<div class="modal-background" id="cabinet-option-back" (click)="hideAll()"></div>
+<div class="modal-background" id="modal-background" (click)="hideDelWorkerModal('modal-container', 'modal-background')"></div>
+<div class="modal-background" id="cabinet-modal-background" (click)="hideDelCabinetModal('cabinet-modal-container', 'cabinet-modal-background')"></div>

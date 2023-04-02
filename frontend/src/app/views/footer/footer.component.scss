@@ -1,0 +1,30 @@
+footer {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    font-family: Montserrat-light, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#rules {
+    font-size: 0.6em;
+    letter-spacing: 0.1em;
+    padding: 0 5px;
+    margin: 100px 0 30px 0;
+    @media screen and (min-width: 1024px) {
+        padding: 0 15px;
+        font-size: 1.1em;
+    }
+}
+
+#contact {
+    letter-spacing: 0.3em;
+    font-size: 1.05em;
+    padding: 30px 0;
+    background-color: var(--secondary-color);
+}

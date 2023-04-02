@@ -1,0 +1,16 @@
+<form [formGroup]="updatePractitionerForm" (ngSubmit)="savePractitioner()" class="container">
+    <div class="top-part-container">
+        <div class="input-container">
+            <label for="firstName" class="content-label">Nom</label>
+            <textarea type="text" class="editable-content" formControlName="firstName" contenteditable="true">{{ selectedPractitioners?.firstName }}</textarea>
+        </div>
+        <div class="input-container">
+            <label for="color" class="content-label">Couleur</label>
+            <input type="color" class="color-picker" formControlName="color">
+        </div>
+    </div>
+    <div class="button-container">
+        <button class="delete-button" (click)="deletePractitioner()">Supprimer le praticien</button>
+        <button class="save-button" type="submit">Sauvegarder</button>
+    </div>
+</form>

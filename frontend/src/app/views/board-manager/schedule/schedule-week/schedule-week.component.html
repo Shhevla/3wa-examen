@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="hours-container">
+        <div class="hours-sub-container" *ngFor="let line of numSequence(this.lastHour -  this.firstHour); let i = index">
+            <div class="hour main">{{i + this.firstHour}}h</div>
+            <div class="hour"></div>
+            <div class="hour">{{i + this.firstHour}}h30</div>
+            <div class="hour"></div>
+        </div>
+    </div>
+    <div class="days-container">
+        <div id="day-container" class="day-container" *ngFor="let line of numSequence(7); let i = index">
+            <div class="day-title">{{this.day[i]}} {{this.actualWeek[i].getDate()}}</div>
+            <div class="lines-container">
+                <div class="hours-line-container" *ngFor="let line of numSequence(this.lastHour -  this.firstHour); let i = index">
+                    <div class="line" [style.height]="this.lineHeight + 'px'" *ngFor="let line of numSequence(this.numberOfSubLines); let i = index"></div>
+                </div>
+                <div class="appointment-container">
+                    <span *ngFor="let appointment of appointments">
+                        <span class="appointment" [style.height]="getAppointmentHeight(appointment)"
+                        [style.top]="getAppointmentStart(appointment)" *ngIf="checkDay(appointment, i)">
+                            <div class="name">{{getCompleteName(appointment)}}</div>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

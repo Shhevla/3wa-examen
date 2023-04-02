@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="schedule-manager-container">
+        <div class="schedule-header">
+            <div class="left-part">
+                <div class="top-part">
+                    <button class="new-appointment-button" (click)="togglePopup()">Nouveau rendez-vous</button>
+                    <button class="replicate-appointments-button">Répliquer la semaine</button>
+                </div>
+                <div class="bottom-part">
+                    <div class="date">{{date}}</div>
+                    <div class="separator"></div>
+                    <button class="page-button" (click)="switchButton('previous')">&LT;</button>
+                    <button class="page-button" (click)="switchButton('next')">&GT;</button>
+                    <button class="view-button" (click)="setDisplayMode('month')">Mois</button>
+                    <button class="view-button selected" (click)="setDisplayMode('week')">Semaine</button>
+                    <button class="view-button" (click)="setDisplayMode('day')">Jour</button>
+                    <div class="separator"></div>
+                    <div class="practitioners-container">
+                        <!-- ngIf pour après -->
+                        <div class="practitioner" *ngFor="let practitioner of this.practitioners"> 
+                            <div class="color-token" [style.background-color]=practitioner.color></div>
+                            <div class="name">{{practitioner.firstName}}</div>
+                        </div>
+                    </div>
+                    <button class="schedule-settings">O</button>
+                </div>
+            </div>
+            <div class="right-part">
+                <!-- <div class="calendar-icon"></div>
+                <div>
+                    <button>&LT;</button>
+                    <button>&GT;</button>
+                </div> -->
+            </div>
+        </div>
+      
+        <div [ngSwitch]="displayMode">
+            <app-schedule-day *ngSwitchCase="'day'"></app-schedule-day>
+            <app-schedule-week (dateChange)="changeMonth($event)" [appointments]="appointments" *ngSwitchCase="'week'"></app-schedule-week>
+            <app-schedule-month *ngSwitchCase="'month'"></app-schedule-month>
+        </div>
+    </div>
+</div>
+<app-schedule-modals [visible]="popupVisible" (popupClosed)="togglePopup()"></app-schedule-modals>
+<!-- envoyer les appointment au child et les affichers -->

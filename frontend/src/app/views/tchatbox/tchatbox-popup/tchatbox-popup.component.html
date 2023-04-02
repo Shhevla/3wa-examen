@@ -1,0 +1,23 @@
+<div class="message-details-popup" *ngIf="visible === true && message != null" [ngSwitch]="displayOptions">
+
+    <div class="menu" *ngSwitchCase="'menu'">
+        <button class="modif-button" (click)="modificationMessage()"> Modification</button>
+        <button class="delete-button"(click)="deleteMessage()"> Suppression</button>
+    </div>
+    <div class="delete-menu" *ngSwitchCase="'delete'">
+        <p class="delete-title">Voulez vous vraiment suprrimez ce message</p>
+        <button class="yes-delete" (click)="activateDeleteMessage()">Oui</button>
+        <button class="no-delete" (click)="returnToMenu()">Non</button>
+    </div>
+
+    <div class="modfication-menu" *ngSwitchCase="'modification'">
+        <p class="title-modif">Modification</p>
+        <form (ngSubmit)="activateModificationMessage()">
+                <input class="input-submit-mod" type="text" [(ngModel)]="message.text" maxlength="120" name="inputModif" placeholder="Entrez votre modification">
+                <button class="button-submit-mod" type="submit">Envoyer</button>
+        </form>
+    </div>
+    <div class="close-container">
+        <button class="close-button" (click)="closePopup()">Fermer</button>
+    </div>
+</div>

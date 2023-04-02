@@ -1,0 +1,213 @@
+<!-- <app-header></app-header> -->
+<div class="global-container">
+
+    <!-- MODAL -->
+    <div>
+        <div id="edit-modal" (click)="hideAll()"></div>
+        <div>
+            <div class="modal" id="confirmation-modal" (click)="hideConfirmationModal()">
+            </div>
+            <div class="modal-content" id="confirmation-modal-content">
+                <div class="modal-title" *ngIf="selectedMember">Voulez-vous supprimer {{selectedMember!.firstName}} ?</div>
+                <button class="confirmation-button" (click)="onDeleteMember();hideConfirmationModal()">Supprimer</button>
+                <button class="confirmation-button" (click)="hideConfirmationModal()">Annuler</button>
+            </div>
+        </div>
+        <div>
+            <div class="modal" id="archive-modal" (click)="hideModal('archive-modal-content', 'archive-modal')">
+            </div>
+            <div class="modal-content" id="archive-modal-content">
+                <div class="modal-title" *ngIf="selectedMember">Voulez-vous archiver {{selectedMember!.firstName}} ?</div>
+                <button class="confirmation-button" (click)="onAddToArchive();hideModal('archive-modal-content', 'archive-modal')">Archiver</button>
+                <button class="confirmation-button" (click)="hideModal('archive-modal-content', 'archive-modal')">Annuler</button>
+            </div>
+        </div>
+        <div>
+            <div class="modal" id="member-form-background-modal" (click)="hideModal('member-form-content-modal', 'member-form-background-modal')">
+            </div>
+            <div class="member-form" id="member-form-content-modal">
+                <app-member-form (hideFormModal)="hideModal('member-form-content-modal', 'member-form-background-modal')"></app-member-form>
+            </div>
+        </div>
+        <div>
+            <div class="modal" id="practitioner-form-background-modal" (click)="hideModal('practitioner-form-content-modal', 'practitioner-form-background-modal')">
+            </div>
+            <div class="empty-modal-content" id="practitioner-form-content-modal">
+                <app-practitioners-form></app-practitioners-form>
+            </div>
+        </div>
+        <div>
+            <div class="modal" id="document-modal" (click)="hideModal('document-modal-content', 'document-modal')">
+            </div>
+            <div class="modal-content" id="document-modal-content">
+                <div class="modal-title">Documents</div>
+                <div class="inner-modal">
+                    <div class="modal-document-image-container">
+                        <div *ngIf="documents.length === 0">Il n'y a actuellement aucun fichier pour {{selectedMember?.firstName}}</div>
+                        <div *ngFor="let document of documents">
+                            <div class="document-image">
+                                <button class="delete-button" (click)="removeFile(document)"></button>
+                                <a [href]="document.url" target="_blank">
+                                    <img [src]="document.url" [alt]="document.name">
+                                </a>
+                                <div class="document-name">{{document.name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="file-upload" class="custom-file-upload">
+                        <div>Ajouter un fichier</div>
+                    </label>
+                    <input id="file-upload" type="file" (change)="uploadFile($event)">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="modal" id="modify-modal" (click)="hideModal('modify-modal-content', 'modify-modal')">
+            </div>
+            <div class="empty-modal-content" id="modify-modal-content">
+                <app-modify-member (hideModal)="hideModal('modify-modal-content', 'modify-modal')"></app-modify-member>
+            </div>
+        </div>
+        <div>
+            <div class="modal" id="modify-practitioners" (click)="hideModal('modify-practitioners-content', 'modify-practitioners')">
+            </div>
+            <div class="empty-modal-content" id="modify-practitioners-content">
+                <app-modify-practitioners></app-modify-practitioners>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL -->
+
+    <div class="sub-header">
+    </div>
+    <div class="categories-container">
+        <div class="categories-button-container">
+            <button class="categories-button-selected" (click)="goToLocation('location')">Liste</button>
+            <button (click)="goToLocation('archive')">Archive</button>
+        </div>
+        <div class="search-bar-container">
+            <input class="search-bar" id="members-search-bar" placeholder="Rechercher" type="search">
+            <div (click)="showSearchedMembers($event)" class="search-button"></div>
+        </div>
+    </div>
+    <div class="board-container" id="main-board">
+        <div class="board-header">
+            <div class="identity-container sorted-button" (click)="sortByName($event)">Nom<span class="sorted-button"></span></div>
+            <div class="documents-container">
+                <div class="document-zone practitioner-label-zone sorted-button" (click)="sortByInvoice($event)">Praticiens facturés<span class="sorted-button"></span>
+                    <div class="practitioner-column-container">
+                        <div [style.background-color]=practitioner.color class="practitioner-color-column" *ngFor="let practitioner of practitioners; let ind = index"></div>
+                    </div>
+                </div>
+                <div class="document-zone sorted-button" (click)="sortByVitalCard($event)">Carte Vitale<span class="sorted-button"></span></div>
+                <div class="document-zone sorted-button" (click)="sortByMutualCard($event)">Carte Mutuelle<span class="sorted-button"></span></div>
+                <div class="document-zone sorted-button" (click)="sortByPrescription($event)">Ordonnance<span class="sorted-button"></span></div>
+            </div>
+            <div class="comments-container">Commentaires</div>
+        </div>
+        <div id="board-line-container" class="board-line-container">
+            <div class="empty-board" *ngIf="members.length === 0">Veuillez ajouter un patient avec le + en bas à droite</div>
+            <div class="board-line" *ngFor="let member of members; let i = index">
+                <div class="identity-container" (click)="showModal('modify-modal-content', 'modify-modal');setSelectedMember(member)">
+                    <div *ngIf="member.gender == 0" style="color: #2e6a90">{{ member.firstName }}</div>
+                    <div *ngIf="member.gender == 1" style="color: #e7335d">{{ member.firstName }}</div>
+                    <div *ngIf="member.gender != 0 && member.gender != 1">{{ member.firstName }}</div>
+                </div>
+                <div class="icons-container">
+                    <button *ngIf="member.notification.documents == undefined || member.notification.documents == -1" 
+                        class="document-button" (click)="showDocumentModal('document-modal-content', 'document-modal', member);getAllFiles()">
+                    </button>
+                    <button *ngIf="member.notification.documents == 0 || member.notification.documents == 1" 
+                        class="fill document-button" (click)="showDocumentModal('document-modal-content', 'document-modal', member);getAllFiles()">
+                        <span *ngIf="member.notification.documents == 1" class="new-files-marker"></span>
+                    </button>
+                    <button class="archive-button" (click)="setSelectedMember(member);showModal('archive-modal', 'archive-modal-content')"></button>
+                    <button class="delete-button" (click)="showConfirmationModal(member)"></button>
+                </div>
+                <div class="documents-container">
+                    <div class="document-zone">
+                        <div class="practitioner-column-container-phone">
+                            <div [style.background-color]=practitioner.color class="practitioner-color-column-phone" *ngFor="let practitioner of practitioners"></div>
+                        </div>
+                        <div class="sub-document-zone-container" >
+                            <div class="sub-document-zone" *ngFor="let practitioner of practitioners; let ind = index">
+                                <div class="edit-mode" [id]="i + '-' + ind + '-0-edit-container'">
+                                    <button class="value-button" (click)="changeMemberInvoice(member, -1, ind); hideSpecificEditMode(i, ind, 0); hideAll()"></button>
+                                    <button class="value-button" (click)="changeMemberInvoice(member, 0, ind); hideSpecificEditMode(i, ind, 0); hideAll()"></button>
+                                    <button class="value-button deprecated-button" (click)="changeMemberInvoice(member, 1, ind); hideSpecificEditMode(i, ind, 0); hideAll()"></button>
+                                </div>
+                                <div class="documents-informations-container" (click)="showSpecificEditMode(i, ind, 0)">
+                                    <div class="document-information doc-unused" *ngIf="member.invoice[ind] == -1 || member.invoice[ind] == undefined"><div class="emptyIcon"></div></div>
+                                    <div class="document-information st-child doc-available" *ngIf="member.invoice[ind] == 0"><div class="availableIcon"></div></div>
+                                    <div class="document-information st-child doc-missing" *ngIf="member.invoice[ind] == 1"><div class="deprecateIcon"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="document-zone">
+                        <div class="edit-mode" [id]="i + '-1-edit-container'">
+                            <button class="value-button" (click)="changeMemberVitalCard(member, -1); hideEditMode(i, 1); hideAll()"></button>
+                            <button class="value-button" (click)="changeMemberVitalCard(member, 0); hideEditMode(i, 1); hideAll()"></button>
+                            <button class="value-button" (click)="changeMemberVitalCard(member, 1); hideEditMode(i, 1); hideAll()"></button>
+                        </div>
+                        <div class="documents-informations-container" (click)="showEditMode(i, 1)">
+                            <div class="document-information doc-unused" *ngIf="member.vitalCard == -1"><div class="emptyIcon"></div></div>
+                            <div class="document-information doc-available" *ngIf="member.vitalCard == 0"><div class="availableIcon"></div></div>
+                            <div class="document-information doc-missing" *ngIf="member.vitalCard == 1"><div class="missingIcon"></div></div>
+                        </div>
+                    </div>
+                    <div class="document-zone">
+                        <div class="edit-mode" [id]="i + '-2-edit-container'">
+                            <button class="value-button" (click)="changeMemberMutualCard(member, -1); hideEditMode(i, 2); hideAll()"></button>
+                            <button class="value-button" (click)="changeMemberMutualCard(member, 0); hideEditMode(i, 2); hideAll()"></button>
+                            <button class="value-button" (click)="changeMemberMutualCard(member, 1); hideEditMode(i, 2); hideAll()"></button>
+                        </div>
+                        <div class="documents-informations-container" (click)="showEditMode(i, 2)">
+                            <div class="document-information doc-unused" *ngIf="member.mutualCard == -1"><div class="emptyIcon"></div></div>
+                            <div class="document-information doc-available" *ngIf="member.mutualCard == 0"><div class="availableIcon"></div></div>
+                            <div class="document-information doc-missing" *ngIf="member.mutualCard == 1"><div class="missingIcon"></div></div>
+                        </div>
+                    </div>
+                    <div class="document-zone">
+                        <div class="edit-mode" [id]="i + '-3-edit-container'">
+                            <button class="value-button" (click)="changeMemberPrescription(member, -1); hideEditMode(i, 3); hideAll()"></button>
+                            <button class="value-button" (click)="changeMemberPrescription(member, 0); hideEditMode(i, 3); hideAll()"></button>
+                            <button class="value-button" (click)="changeMemberPrescription(member, 1); hideEditMode(i, 3); hideAll()"></button>
+                        </div>
+                        <div class="documents-informations-container" (click)="showEditMode(i, 3)">                   
+                            <div class="document-information doc-unused" *ngIf="member.prescription == -1"><div class="emptyIcon"></div></div>
+                            <div class="document-information doc-available" *ngIf="member.prescription == 0"><div class="availableIcon"></div></div>
+                            <div class="document-information doc-missing" *ngIf="member.prescription == 1"><div class="missingIcon"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comments-container">
+                    <div class="comment-wrapper">
+                        <div class="comment" [id]="i+ '-comment'" contenteditable="true" (click)="checkInput(i, $event)">{{ member.comments }}</div>
+                    </div>
+                    <div class="save-button-comment" [id]="i + '-save-button-comment'" (click)="saveComment(member, i)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-board-line-container">
+        <div class="practitioners-container">
+            <div class="practitioners-line">
+                <div class="practitioner" *ngIf="practitioners.length === 0">Veuillez ajouter un praticien afin d'utiliser les factures</div>
+                <div class="practitioner" (click)="showModal('modify-practitioners-content', 'modify-practitioners');setSelectedPractitioner(practitioner)" *ngFor="let practitioner of practitioners; let i = index">
+                    {{ practitioner.firstName | uppercase }}
+                    <div class="practitioner-back-color" [style.background-color]=practitioner.color></div>
+                </div>
+            </div>
+            <!-- <button class="show-practitioner-modal-button" (click)="showModal('practitioner-form-content-modal', 'practitioner-form-background-modal')">+</button> -->
+        </div>
+        <div class="page-button-container">
+            <button class="left-button" (click)="pageUp()"></button>
+            <button class="right-button" (click)="pageDown()"></button>
+        </div>
+    </div>
+    
+    <div class="sub-header">
+        <button class="show-modal-button" (click)="showModal('member-form-content-modal', 'member-form-background-modal')">+</button>
+    </div>
+</div>

@@ -1,0 +1,369 @@
+.global-container {
+    display: block;
+    font-size: 0.5em;
+
+    @media screen and (min-width: 600px) {
+        font-size: 0.6em;
+    }
+    @media screen and (min-width: 1024px) {
+        font-size: 0.9em;
+    }
+
+    #appointment-form-modal {
+        display: none;
+    }
+
+    #appointment-form-modal-back {
+        display: none;
+        z-index: 2;
+        background-color: transparent;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 100vh;
+    }
+
+    .show-modal-button {
+        position: fixed;
+        background-color: #02CA72;
+        z-index: 5;
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+        color: white;
+        line-height: 40px;
+        bottom: 15px;
+        right: 15px;
+        border: none;
+        border-radius: 40px;
+        box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.6);
+        transition: background-color 0.2s ease-in-out;
+        transition: width 0.3s ease-in-out;
+    
+        @media screen and (min-width: 1024px) {
+            width: 70px;
+            height: 70px;
+            font-size: 70px;
+            line-height: 70px;
+            bottom: 25px;
+            right: 25px;
+        }
+
+        &:hover {
+            background-color: #059154;
+            cursor: pointer;
+        }
+    }
+}
+
+.calendar-header {
+    font-size: 1.6em;
+    margin: calc(5vh + 15px) auto 10px auto;
+    width: 90%;
+    display: flex;
+    gap: 20px;
+    .month-display {
+        display: flex;
+        column-gap: 30px;
+        color: white;
+        .month-button {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            background-color: var(--base-color);
+            &:first-child {
+                background-image: url("../../../../../assets/ressources/icons/leftIcon.png");
+                background-repeat: no-repeat;
+                background-size: 35%;
+                background-position: center;
+            }
+            &:nth-child(2) {
+                background-image: url("../../../../../assets/ressources/icons/rightIcon.png");
+                background-repeat: no-repeat;
+                background-size: 35%;
+                background-position: center;
+            }
+
+            &:hover {
+                background-color: #5c7d92;
+                cursor: pointer;
+            }
+        }
+        .month-string {
+            background-color: var(--base-color);
+            border-radius: 50px;
+            padding: 1px 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    .hours-display {
+        .hours-string {
+            background-color: var(--base-color);
+            color: white;
+            border-radius: 50px;
+            padding: 1px 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            select {
+                background-color: #5c7d92;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                font-size: 0.8em;
+                padding: 3px 8px;
+                margin: 0px 4px;
+                appearance: none;
+                text-align: center;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.calendar-container {
+    display: flex;
+    margin: auto;
+    width: 90%;
+
+    .day-calendar {
+        width: 30%;
+        flex-direction: column;
+        margin-right: 5px;
+        display: none;
+
+        @media screen and (min-width: 624px) {
+            display: flex;
+        }
+
+        .day-date-case {
+            padding: 5px 0;
+            background-color: var(--base-color);
+            color: white;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .appointments-case {
+            display: flex;
+            height: 72vh;
+            width: calc(100% -20px);
+            border: 1px solid var(--base-color);
+            overflow: auto;
+            padding: 0 2px;
+            column-gap: 10px;
+            position: relative;
+            border-radius: 0 0 10px 10px;
+
+            &::-webkit-scrollbar {
+                width: 7px;
+            }
+            &::-webkit-scrollbar-track {
+                margin: 2px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: var(--base-color);
+                border-radius: 50px;
+            }
+
+            .times-container {
+                position: absolute;
+                width: calc(100% - 8px);
+                .times-line {
+                    font-size: 0.8em;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    color: rgba($color: black, $alpha: 0.7);
+                    justify-content: space-between;
+
+                    .time-button {
+                        background-color: rgb(221, 221, 221);
+                        min-height: 1.5vh;
+
+                        &:first-child {
+                            background-color: rgb(201, 199, 199);
+                        }
+                        
+                        &:hover {
+                            background-color: rgb(179, 191, 202);
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            .timegrid-container {
+                height: 78vh;
+                width: 100%;
+                position: relative;
+
+                .timegrid-line {
+                    height: 60px;
+                    &::after {
+                        content: "";
+                        width: 100%;
+                        position: absolute;
+                        border-top: 1px solid rgba($color: gray, $alpha: 0.6);
+                    }
+                    .sub-timegrid-line {
+                        transform: translateY(30px);
+                        width: 95%;
+                        margin-left: auto;
+                        margin-right: auto;
+                        border-top: 1px solid rgba($color: gray, $alpha: 0.4);
+                        &::after, &::before {
+                            content: "";
+                            width: 100%;
+                            position: absolute;
+                            margin-left: auto;
+                            margin-right: auto;
+                            border-top: 1px solid rgba($color: gray, $alpha: 0.4);
+                            
+                        }
+                        &::after {
+                            transform: translateY(15px);
+                        }
+                        &::before {
+                            transform: translateY(-15px);
+                        }
+                    }
+                }
+            }
+            .appointments-container {
+                display: flex;
+                flex-direction: column;
+                width: calc(100% - 50px);
+                padding-left: 40px;
+
+                .appointment {
+                    height: 0;
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    width: 100%;
+                    text-align: center;
+                    margin: auto;
+                    border-radius: 5px;
+                    color: white;
+                    margin: auto;
+                    white-space: nowrap;
+
+                    .description {
+                        overflow: hidden;
+                    }
+                    &::-webkit-scrollbar {
+                        width: 5px;
+                    }
+                    &::-webkit-scrollbar-track {
+                        margin: 8px;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background-color: rgba(255, 255, 255, 0.5);
+                        border-radius: 5px;
+                    }
+                }
+                .time {
+                    color: rgba($color: #fff, $alpha: 0.85);
+                }
+                .delete-button {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    background-color: red;
+                    border: 2px solid rgba(211, 0, 0, 0.575);
+                    border-radius: 20px 20px 20px 0;
+                    padding: 14px;
+                    transform: translateX(5px) translateY(-5px);
+                    background-image: url("../../../../../assets/ressources/icons/missingIcon.png");
+                    background-size: 60%;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+    }
+
+    .calendar {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        @media screen and (min-width: 624px) {
+            width: 70%;
+        }
+        
+        .case {
+            width: 14.285%;
+            height: 10vh;
+            box-sizing: border-box;
+            border: 1px solid var(--base-color);
+            padding: 4px;
+            overflow: auto;
+
+            @media screen and (min-width: 624px) {
+                height: 13vh;
+            }
+
+            &:hover {
+                background-color: rgba($color: #5c7d92, $alpha: 0.5);
+                cursor: pointer;
+            }
+            &::-webkit-scrollbar {
+                width: 7px;
+            }
+            &::-webkit-scrollbar-track {
+                margin: 2px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: var(--base-color);
+                border-radius: 50px;
+            }
+            .calendar-appointments-container {
+                .appointment {
+                    font-size: 0.7em;
+                    width: 80%;
+                    text-align: center;
+                    margin: auto;
+                    padding: 5px;
+                    border-radius: 10px;
+                    color: white;
+                    margin: 3px auto;
+                }
+            }
+        }
+
+        .other-month {
+            background-color: rgba($color: #3d525f, $alpha: 0.25);;
+        }
+
+        .date-case {
+            width: 14.285%;
+            padding: 5px 0;
+            box-sizing: border-box;
+            background-color: var(--base-color);
+            color: white;
+            text-align: center;
+            &:first-child {
+                border-radius: 10px 0 0 0;
+            }
+            
+            &:nth-child(7) {
+                border-radius: 0 10px 0 0;
+            }
+        }
+    }
+}

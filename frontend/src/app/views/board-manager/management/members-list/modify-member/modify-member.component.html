@@ -1,0 +1,31 @@
+<form [formGroup]="updateMemberForm" (ngSubmit)="saveMember()" class="container">
+    <div class="top-part-container">
+        <div class="input-container">
+            <label for="firstName" class="content-label">Nom</label>
+            <textarea type="text" class="editable-content" formControlName="firstName" contenteditable="true">{{ selectedMember?.firstName }}</textarea>
+        </div>
+        <div class="input-container">
+            <label for="lastName" class="content-label">Prénom</label>
+            <textarea class="editable-content" formControlName="lastName" contenteditable="true">{{ selectedMember?.lastName }}</textarea>
+        </div>
+    </div>
+    <div class="top-part-container">
+        <div class="input-container">
+            <label for="phone" class="content-label">Téléphone</label>
+            <textarea class="editable-content" formControlName="phone" contenteditable="true">{{ selectedMember?.phoneNumber }}</textarea>
+        </div>
+        <div class="input-container">
+            <label for="email" class="content-label">Email</label>
+            <textarea class="editable-content" formControlName="email" contenteditable="true">{{ selectedMember?.email }}</textarea>
+        </div>
+        <div class="input-container">
+            <label for="adress" class="content-label">Adresse</label>
+            <textarea class="editable-content" formControlName="adress" contenteditable="true">{{ selectedMember?.adress }}</textarea>
+        </div>
+    </div>
+    <div class="input-container">
+        <label for="comments" class="content-label">Commentaire</label>
+        <textarea class="comment-editable-content" formControlName="comments" contenteditable="true">{{ selectedMember?.comments }}</textarea>
+    </div>
+    <button class="save-button" type="submit">Sauvegarder</button>
+</form>

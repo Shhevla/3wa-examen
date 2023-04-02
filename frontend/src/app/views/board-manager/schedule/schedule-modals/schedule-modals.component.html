@@ -1,0 +1,50 @@
+<span *ngIf="visible" class="modal-background" (click)="hideModal()"></span>
+<div class="modals" *ngIf="visible" [ngClass]="{'visible': visible}">
+    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+        <div class="form-container" formGroupName="basicInfos">
+            <div class="global-title">Nouveau rendez-vous</div>
+            <div class="practitioner-container">
+                <div class="practitioner-title">Patient</div>
+                <div class="practitioner-informations">
+                    <input class="normal-input" placeholder="Nom" formControlName="firstName"/>
+                    <input class="normal-input" placeholder="Prénom" formControlName="lastName"/>
+                    <input class="normal-input" placeholder="Téléphone" formControlName="phone"/>
+                    <input class="normal-input" placeholder="Email" formControlName="mail"/>                
+                    <input class="large-input" placeholder="Adresse" formControlName="address"/>                
+                    <input class="normal-input" placeholder="Code postal" formControlName="zipCode"/>
+                    <input class="normal-input" placeholder="Ville" formControlName="city"/>
+                </div>
+            </div>
+            <div class="hours-container">
+                <div class="base-title">Choix du praticien</div>
+                <div>
+                    <div class="hours-informations">
+                        <div formGroupName="date">
+                            <input type="date" formControlName="day" />
+                            <input type="time" formControlName="startTime" />
+                            <input type="time" formControlName="endTime" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reccurences-container">
+                <div class="base-title">Récurences</div>
+                <div>
+                    <div formGroupName="reccurences">
+                        <div class="checkbox-container" formGroupName="daysList">
+                            <label *ngFor="let day of ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim']">
+                              <input type="checkbox" [formControlName]="day"> {{ day }}
+                            </label>
+                        </div>
+                        <div class="date-container">
+                            <input type="date" formControlName="startDate" />
+                            <input type="date" formControlName="endDate" />
+                        </div>
+                    </div>
+                </div>
+                <textarea formControlName="notes"></textarea>
+            </div>
+        </div>
+        <button class="save-button" type="submit">Enregistrer</button>
+      </form>
+</div>

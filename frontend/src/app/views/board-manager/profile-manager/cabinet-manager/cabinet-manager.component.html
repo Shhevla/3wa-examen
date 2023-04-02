@@ -1,0 +1,13 @@
+<div class="global-container">
+    <div class="container">
+        <div class="title">Ajouter un cabinet</div>
+        <div class="fields-container">
+            <div class="cabinet-fields">
+                <div class="label">Nom du cabinet</div>
+                <input class="text" [(ngModel)]="cabinet.name">
+            </div>
+            <button class="button" *ngIf="!checkValidity()" disabled>Enregistrer</button>
+            <button class="button" *ngIf="checkValidity()" (click)="initCreationCabinet()">Enregistrer</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="modules-container">
+    <button class="module-button module-dropdown-button">
+        <div class="icon locationIcon"></div>
+        <span class="dropdown-container">
+            <span class="dropdown" *ngFor="let location of locations"><button class="dropdown-button" (click)="onChangeLocation(location)">{{location}}</button></span>
+        </span>
+    </button>
+    <button class="module-button" (click)="travelToModule('location')">
+        <div class="icon officeIcon"></div>
+        <span class="button-label">Patients</span>
+    </button>
+    <button class="module-button" (click)="travelToModule('calendar')">
+        <div class="icon profileIcon"></div>
+        <span class="button-label">Calendrier</span>
+    </button>
+    <button class="module-button">
+        <div class="icon contractIcon"></div>
+        <span class="button-label">Module 4</span>
+    </button>
+    <button class="module-button">
+        <div class="icon contractIcon"></div>
+        <span class="button-label">Module 5</span>
+    </button>
+    <button class="module-button">
+        <div class="icon contractIcon"></div>
+        <span class="button-label">Module 6</span>
+    </button>
+</div>
+<body class="body-router">
+    <router-outlet></router-outlet>
+</body>

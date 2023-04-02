@@ -1,0 +1,120 @@
+.container {
+    text-align: center;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: space-between;
+    left: 50%;
+    top: 50%;
+    width: 98%;
+    z-index: 11;
+    flex-wrap: wrap;
+    transform: translate(-50%, -50%);
+    vertical-align: middle;
+    background-color: #23232D;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba($color: #000000, $alpha: 0.5);
+
+    // responsive mobile to desktop
+    @media screen and (min-width: 620px) {
+        width: 60%;
+    }
+
+    @media screen and (min-width: 1024px) {
+        width: 50%;
+        font-size: 0.8em;
+        padding: 20px 50px;
+        border-radius: 20px;
+    }
+
+    @media screen and (min-height: 350px) {
+        height: inherit;
+    }
+
+    label {
+        font-size: 1.4em;
+        margin-bottom: 5px;
+    }
+}
+
+.container form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    @media screen and (orientation:landscape) {
+        @media screen and (max-width: 850px) {
+            flex-direction: row;
+        }
+    }
+}
+
+
+.input-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding-bottom: 5px;
+}
+
+.identification-part {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    .input-part {
+        width: 45%;
+    }
+}
+
+.contact-part {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .input-part {
+        width: 30%;
+    }
+}
+
+.input-check {
+    border-bottom: 1px solid #15151C;
+}
+
+input,
+textarea {
+    border-radius: 5px;
+    padding-left: 5px;
+    border: none;
+    text-indent: 3px;
+}
+
+textarea {
+    height: 15px;
+    resize: vertical;
+}
+
+input:focus {
+    outline: none;
+}
+
+.submit-button {
+    box-sizing: border-box;
+    order: 2;
+    padding: 5px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: Montserrat-bold, sans-serif;
+}
+
+.submit-button:hover {
+    cursor: pointer;
+    background-color: #587285;
+}

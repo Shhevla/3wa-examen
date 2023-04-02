@@ -1,0 +1,69 @@
+<div class="global-container" *ngIf="count == 0">
+    <h2>S'inscrire</h2>
+    <div class="container">
+        <form [formGroup]="inscriptionForm" (ngSubmit)="submission()">
+            <div class="input-part name-part">
+                <input class="field" type="text" id="Fname" formControlName="Fname" placeholder="Nom">
+            </div>
+            <div class="input-part name-part">
+                <input class="field" type="text" id="Lname" formControlName="Lname" placeholder="Prénom">
+            </div>
+            <div class="input-part">
+                <input class="field" type="email" id="email" formControlName="email" placeholder="Email">
+            </div>
+            <div class="input-part">
+                <input class="field" type="password" id="password" formControlName="password" placeholder="Mot de passe">
+            </div>
+            <div class="input-part">
+                <input class="field" type="password" id="Cpassword" formControlName="Cpassword" placeholder="Confirmer Mot de passe">
+            </div>
+        <!--
+            <div class="input-part name-part">
+                <label for="Dname">Nom Afficher :</label>
+                <input type="text" id="Dname" formControlName="Dname">
+            </div>
+            <div class="input-part">
+                <label for="adress">Adresse :</label>
+                <input type="text" id="adress" formControlName="adress">
+            </div>
+            <div class="input-part">
+                <label for="birthday">Date d'anniversaire :</label>
+                <input type="text" id="birthday" formControlName="birthday">
+            </div>
+            <div class="input-part">
+                <label for="birth_location">Lieu de naissance :</label>
+                <input type="text" id="birth_location" formControlName="birth_location">
+            </div>
+            <div class="input-part">
+                <label for="tel">Téléphone :</label>
+                <input type="number" id="tel" formControlName="tel">
+            </div>
+            <div class="input-part">
+                <label for="order">Ordre :</label>
+                <input type="number" id="order" formControlName="order">
+            </div>
+            
+            <div class="input-part">
+                <label for="order_city">Ville de délivration d'ordre :</label>
+                <input type="text" id="order_city" formControlName="order_city">
+            </div>
+            <div class="input-part input-check">
+                <label for="gender">Sexe* :</label>
+                <div class="radio-container">
+                    <input class="unusedRadio" type="radio" [value]="0" formControlName="gender">
+                    <label>Homme</label>
+                    <input class="usedRadio" type="radio" [value]="1" formControlName="gender">
+                    <label>Femme</label>
+                    <input class="usedRadio" type="radio" [value]="-1" formControlName="gender">
+                    <label>Non précisé</label>
+                </div>
+            </div>-->
+            <button class="submit-button" type="submit">Créer un compte</button>
+            <div class="error-message">
+                <div *ngIf="invalid == 1">Alerte champ(s) non remplie*</div>
+                <div *ngIf="invalid == 2">Mot de passe non correspondant</div>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="count == 1"> <p></p></div>

@@ -1,0 +1,90 @@
+<div class="container">
+    <h2>Ajouter un patient</h2>
+    <div id="error"></div>
+    <form [formGroup]="memberForm" (ngSubmit)="onSaveMember()">
+        <div class="identification-part">
+            <div class="input-part name-part">
+                <label for="firstName">Nom</label>
+                <input type="text" id="firstName" formControlName="firstName">
+            </div>
+            <div class="input-part name-part">
+                <label for="lastName">Prénom</label>
+                <input type="text" id="lastName" formControlName="lastName">
+            </div>
+        </div>
+        <div class="contact-part">
+            <div class="input-part">
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email">
+            </div>
+            <div class="input-part">
+                <label for="adress">Adresse</label>
+                <input type="text" id="adress" formControlName="adress">
+            </div>
+            <div class="input-part">
+                <label for="phoneNumber">Téléphone</label>
+                <input pattern="[0]{1}[0-9]{9}" type="tel" id="phoneNumber" formControlName="phoneNumber">
+            </div>
+        </div>
+        <div class="input-part input-check">
+            <label for="gender">Sexe</label>
+            <div class="radio-container">
+                <input class="unusedRadio" type="radio" id="gender" [value]="0" formControlName="gender">
+                <label>Homme</label>
+                <input class="usedRadio" type="radio" id="gender" [value]="1" formControlName="gender">
+                <label>Femme</label>
+                <input class="usedRadio" type="radio" id="gender" [value]="-1" formControlName="gender">
+                <label>Non précisé</label>
+            </div>
+        </div>
+        <div class="input-part input-check">
+            <label for="invoice">Facturé</label>
+            <div class="radio-container">
+                <input class="unusedRadio" type="radio" id="invoice" [value]="-1" formControlName="invoice">
+                <label>Inutilisé</label>
+                <input class="usedRadio" type="radio" id="invoice" [value]="0" formControlName="invoice">
+                <label>Oui</label>
+                <input class="missingRadio" type="radio" id="invoice" [value]="1" formControlName="invoice">
+                <label>Non</label>
+            </div>
+        </div>
+        <div class="input-part input-check">
+            <label for="vitalCard">Carte vitale</label>
+            <div class="radio-container">
+                <input class="unusedRadio" type="radio" id="vitalCard" [value]="-1" formControlName="vitalCard">
+                <label>Inutilisé</label>
+                <input class="usedRadio" type="radio" id="vitalCard" [value]="0" formControlName="vitalCard">
+                <label>Oui</label>
+                <input class="missingRadio" type="radio" id="vitalCard" [value]="1" formControlName="vitalCard">
+                <label>Non</label>
+            </div>
+        </div>
+        <div class="input-part input-check">
+            <label for="mutualCard">Carte mutuelle</label>
+            <div class="radio-container">
+                <input class="unusedRadio" type="radio" id="mutualCard" [value]="-1" formControlName="mutualCard">
+                <label>Inutilisé</label>
+                <input class="usedRadio" type="radio" id="mutualCard" [value]="0" formControlName="mutualCard">
+                <label>Oui</label>
+                <input class="missingRadio" type="radio" id="mutualCard" [value]="1" formControlName="mutualCard">
+                <label>Non</label>
+            </div>
+        </div>
+        <div class="input-part input-check">
+            <label for="prescription">Ordonnance</label>
+            <div class="radio-container">
+                <input class="unusedRadio" type="radio" id="prescription" [value]="-1" formControlName="prescription">
+                <label>Inutilisé</label>
+                <input class="usedRadio" type="radio" id="prescription" [value]="0" formControlName="prescription">
+                <label>Oui</label>
+                <input class="missingRadio" type="radio" id="prescription" [value]="1" formControlName="prescription">
+                <label>Non</label>
+            </div>
+        </div>
+        <div class="input-part">
+            <label for="comments">Commentaires</label>
+            <textarea type="text" id="comments" formControlName="comments"></textarea>
+        </div>
+        <button class="submit-button"type="submit">Ajouter</button>
+    </form>
+</div>

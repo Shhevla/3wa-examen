@@ -1,0 +1,82 @@
+.container {
+    position: fixed;
+    background-color: white;
+    z-index: 3;
+    display: flex;
+    box-shadow: 5px 5px 15px 5px rgba($color: #5a5a5a, $alpha: 0.6);
+    border-radius: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    .input-title {
+        background-color: var(--base-color);
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        padding: 10px 0;
+        margin-bottom: 10px;
+        
+        input {
+            margin-left: 10px;
+            color: white;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--base-color);
+            font-size: 1.25em;
+
+            &::placeholder {
+                color: white;
+                opacity: 0.8; /* Firefox */
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .input-container {
+        padding: 10px;
+        .input-part {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            column-gap: 20px;
+    
+            textarea {
+                background-color: rgba($color: #d8d8d8, $alpha: 0.5);
+                border: none;
+                border-radius: 5px;
+                min-height: 32px;
+                max-height: 100px;
+                resize: vertical;
+            }
+
+            input {
+                border: none;
+                &:focus {
+                    outline: none;
+                    border-bottom: 1px solid var(--base-color);
+                }
+            }
+        }
+
+        .submit-button-container {
+            width: 100%;
+            display: flex;
+            justify-content: right;
+            .submit-button {
+                background-color: var(--base-color);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 10px;
+        
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.85;
+                }
+            }
+        }
+    }
+}

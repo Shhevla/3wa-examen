@@ -1,0 +1,101 @@
+.container {
+
+    background-color: var(--base-color);
+    padding: 15px 20px;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+
+    .content-label {
+        margin-left: 5px;
+        font-size: 0.84em;
+        color: lightblue;
+    }
+
+    .editable-content, .comment-editable-content{
+        color: white;
+        font-size: 1.2em;
+    }
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        margin: 1px;
+        font-size: 0.94em;
+        .editable-content {
+            resize: none;
+            width: 250px;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgb(124, 189, 189);
+            margin-top: 5px;
+            padding: 5px;
+            background-color: #1d587e;
+            &:focus {
+                outline: none;
+                background-color: rgb(16, 58, 97);
+            }
+        }
+
+        .color-picker {
+            margin-top: 5px;
+            width: 250px;
+        }
+
+        .comment-editable-content {
+            width: 100%;
+            border-bottom: 1px solid rgb(124, 163, 189);
+            margin-top: 5px;
+            padding: 5px;
+            background-color: #1d587e;
+            &:focus {
+                outline: none;
+                background-color: rgb(16, 58, 97);
+            }
+        }
+    }
+
+    .top-part-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        gap: 10px;
+    }
+
+    .button-container {
+        display: flex;
+        
+        .save-button {
+            display: flex;
+            margin-top: 10px;
+            background-color: #1d587e;
+            color: white;
+            border: none;
+            margin-left: auto;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    
+        .delete-button {
+            display: flex;
+            margin-top: 10px;
+            background-color: #b83e3e;
+            color: white;
+            border: none;
+            margin-left: auto;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .delete-button, .save-button {
+            &:hover {
+                opacity: 0.85;
+                cursor: pointer;
+            }
+        }
+    }
+
+
+}

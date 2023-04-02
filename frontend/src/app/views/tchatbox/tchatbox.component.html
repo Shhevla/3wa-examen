@@ -1,0 +1,35 @@
+<button  class="button-transition" (click)="change()">Messagerie</button>
+    <button class="button-mobile-transition" (click)="change()">
+            <div class="icon-message-mobile">&#9993;</div>
+    </button>
+<div class="chat-container" [ngSwitch]="displayMode">
+    <div class="cabinet-swap" *ngSwitchCase="'cabinet'" >
+        <div class="cabinet-header">
+            <p class="title">MESSAGERIE</p>
+            <p class="quit-message" (click)="reverseChange()">&#9587;</p>
+        </div>
+        <span class="title-line"></span>
+        <div class="cabinets-list"> 
+          <div class="cabinet-container" *ngFor="let data of cabinets; let index = index">
+            <div class="cabinet-button" (click)="setDisplayMode('tchat', index)">
+              <div class="cabinet-initial">{{data.name.substr(0, 2).toUpperCase()}}</div>
+              <div class="cabinet-informations">
+                <p class="cabinet-name">{{data.name}}</p>
+                <p class="last-cabinet-message" *ngIf="msglist[index] !== null">{{msglist[index].message[msglist[index].message.length - 1].text}}</p>
+              </div>
+              <div *ngIf="msglist[index] !== null && msglist[index].workerNotif[searchIndex(index)]">
+                <svg height="8px" width="8px">
+                  <circle  cx="4" cy="4" r="4" fill="red" />
+                </svg>
+              </div>
+            </div>
+            <span class="cabinet-line"></span>
+          </div>
+        </div> 
+        <span class="end-line"></span>
+    </div>
+    <div *ngSwitchCase="'tchat'">
+        <app-tchatboxmessage [msglist]="msglist[value_cab]" [cabinet]="cabinets[value_cab]" [uidCab]="this.uid[value_cab]"(displayChange)="getOutputVal($event)"></app-tchatboxmessage>
+    </div>
+</div>
+  

@@ -1,0 +1,31 @@
+<header id="home-header">
+    <div class="container" id="login-container">
+        <button (click)="toggleMenu()">
+            <img id="menu-icon" src="../../../../assets/ressources/icons/menu_icon.svg" alt="menu">
+        </button>
+    </div>
+    <a routerLink="/home" class="container" id="logo-container">
+        <img id="icon" src="../../../../assets/ressources/icons/blue_logo_bagas.svg" alt="Logo Bagas">
+        <img id="text" src="../../../../assets/ressources/icons/bagas-sante.svg" alt="Bagas santé">
+    </a>
+    <div class="container" id="link-container">
+        <div class="sign-up-button-container">
+            <a (click)="showSignIn()" id="sign-in-button" class="header-button" *ngIf="!isAuth">Se connecter</a>
+            <div id="sign-in-container">
+                <app-signin></app-signin>
+            </div>
+        </div>
+        <a (click)="showSignUp()" id="sign-up-button" class="header-button" *ngIf="!isAuth">S'inscrire</a>
+        <a routerLink="/board" class="header-button" *ngIf="isAuth">Accueil</a>
+        <a (click)="this.authService.signOutUser()" class="header-button" *ngIf="isAuth">Se déconnecter</a>
+    </div>
+</header>
+<div class="menu-container" [style.max-width]="size">
+    <div class="menu">
+        <a (click)="showSignIn()" id="menu-sign-in-button" class="button" *ngIf="!isAuth">Se connecter</a>
+        <a routerLink="/board" class="button" *ngIf="isAuth">Accueil</a>
+    </div>
+</div>
+<div id="sign-up-container">
+    <app-inscription></app-inscription>
+</div>

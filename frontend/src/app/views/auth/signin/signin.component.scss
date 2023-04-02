@@ -1,0 +1,117 @@
+.global-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    position: fixed;
+    flex-direction: column;
+    padding: 25px 25px;
+    border-radius: 15px;
+    background-color: rgba(35, 35, 45);
+    color: white;
+    white-space: nowrap;
+    z-index: 10;
+    box-sizing: border-box;
+
+    @media screen and (min-width: 1024px) {
+        width: 400px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        transform: translate(-66.6%, 30px);
+        border-radius: 0 0 15px 15px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        transform: translate(-64%, 30px);
+    }
+
+    h2 {
+        font-size: 1rem;
+        margin: 0;
+        position: absolute;
+        padding: 0.5rem 3rem;
+        top: 0;
+        transform: translateY(-50%);
+        background-color: rgba(35, 35, 45);
+        border-radius: 7px;
+        letter-spacing: 0.05rem;
+
+        @media screen and (min-width: 1024px) {
+            display: none;
+        }
+    }
+
+    .container {
+        .input-part {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            input, button {
+                border-radius: 5px;
+                border: none;
+            }
+
+            .field {
+                background-color: rgba(224, 225, 227, 0.17);
+                border: none;
+                width: 70vw;
+                height: 2rem;
+                margin: 1rem 0;
+                text-indent: 10px;
+                color: white;
+                outline: none;
+
+                @media screen and (min-width: 1024px) {
+                    width: 300px;
+                }
+
+                &::placeholder {
+                    color: white;
+                    opacity: 0.3;
+                }
+            }
+
+            button {
+                color: white;
+                height: 2rem;
+                letter-spacing: 0.05rem;
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.8;
+                }
+            }
+
+            .signin-button {
+                background-color: var(--base-color);
+                width: 50%;
+                margin: 25px auto;
+
+                @media screen and (min-width: 1024px) {
+                    margin-bottom: 0;
+                }
+            }
+            .signup-button {
+                background-color: #4a4949;
+
+                @media screen and (min-width: 1024px) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .text-link {
+        font-size: 0.7rem;
+        width: 100%;
+        transform: translateY(-50%);
+        text-align: right;
+
+        .link {
+            color: rgb(170, 170, 170);
+        }
+    }
+}

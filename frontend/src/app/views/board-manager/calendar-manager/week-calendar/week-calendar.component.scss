@@ -1,0 +1,27 @@
+.calendar {
+    display: flex;
+    width: 70vw;
+    flex-wrap: wrap;
+    margin: auto;
+    border: 1px solid var(--base-color);
+
+    .date-case {
+        width: 10vw;
+        padding: 5px 0px;
+        box-sizing: border-box;
+        background-color: var(--base-color);
+        color: white;
+        text-align: center;
+    }
+
+    .case {
+        width: 10vw;
+        height: 50vh;
+        box-sizing: border-box;
+        border: 1px solid var(--base-color);
+        &:hover {
+            background-color: #5c7d92;
+            cursor: pointer;
+        }
+    }
+}

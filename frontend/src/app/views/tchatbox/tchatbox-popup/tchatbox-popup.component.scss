@@ -1,0 +1,93 @@
+.message-details-popup {
+    background-color: rgba(245, 245, 245, 0.71);
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    width: 50%;
+    height: 30%;
+
+
+    .menu {
+        display: block;
+        position: absolute;
+        width: 100%;
+        .delete-button {
+            width: 80%;
+            font-size: 12px;
+            word-wrap: break-word;
+        }
+        .modif-button {
+            width: 80%;
+            font-size: 12px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            word-wrap: break-word;
+        }
+    }
+
+    
+
+    .modfication-menu {
+        display: block;
+        position: absolute;
+        width: 100%;
+        .title-modif {
+            margin-left: 10%;
+            width: 80%;
+            word-wrap: break-word;
+        }
+        .input-submit-mod {
+            width: 80%;
+            word-wrap: break-word;
+            margin-bottom: 10px;
+        }
+        .button-submit-mod {
+            display: none;
+        }
+    }
+    .delete-menu {
+        display: block;
+        position: absolute;
+        width: 100%;
+
+        .delete-title{
+            font-size: 12px;
+            margin-left: 10%;
+            width: 80%;
+            word-wrap: break-word;
+        }
+        .yes-delete{
+            display: inline-block;
+            font-size: 12px;
+            width: 30%;
+            margin-right: 10px;
+            word-wrap: break-word;
+        }
+
+        .no-delete{
+            display: inline-block;
+            font-size: 12px;
+            width: 30%;
+            word-wrap: break-word;
+            margin-bottom: 30px;
+        }
+    }
+
+    .close-container{
+        display: block;
+        position: absolute;
+        bottom: 15%;
+        width: 100%;
+
+        .close-button {
+            width: 80%;
+            font-size: 12px;
+            word-wrap: break-word;
+        }
+    }
+}

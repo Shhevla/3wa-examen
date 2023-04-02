@@ -1,0 +1,20 @@
+<div class="global-container">
+    <h2>Connexion</h2>
+    <div class="container">
+        <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+            <div class="input-part">
+                <input class="field" type="text" id="email" formControlName="email" placeholder="Email">
+            </div>
+            <div class="input-part">
+                <input class="field" type="password" id="password" formControlName="password" placeholder="Mot de passe">
+            </div>
+            <div class="text-link">
+                <a class="link" routerLink="" >Mot de passe oublié ?</a>
+            </div>
+            <div class="input-part">
+                <button class="signin-button" type="submit">Se connecter</button>
+            </div>
+        </form>
+        <p class="error-message">{{ errorMessage }}</p>
+    </div>
+</div>

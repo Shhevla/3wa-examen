@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div class="global-container">
+    <div class="sub-header">
+        <div class="modal" id="modal" (click)="hideModal()">
+        </div>
+        <div class="modal-content" id="modal-content">
+            <span class="close-modal" (click)="hideModal()">&times;</span>
+            <input class="add-location-text" type="text" id="city" placeholder="Nom de la localisation">
+            <button class="add-location-button" (click)="onNewLocation()">Ajouter une localisation</button>
+        </div>
+        <button class="show-modal-button" (click)="showModal()">+</button>
+    </div>
+    <div class="categories-container">
+        <button (click)="switchList('list')">Liste</button>
+        <button (click)="switchList('archive')">Archive</button>
+    </div>
+    <div class="list" id="type-list">
+        <div class="header-line">
+            <div>Localisations</div>
+        </div>
+        <div class="member-line" *ngIf="locations.length === 0">Veuillez ajouter une localisation avec le + en bas à droite</div>
+        <div *ngFor="let location of locations">
+            <div class="member-line">
+                <div class="documents-main-info" (click)="onViewLocation(location.toString())">
+                    <div class="name">
+                        {{location}}
+                    </div>
+                </div>
+                <button class="archive-location-button" (click)="onAddToArchive(location)">Archiver</button>
+            </div>
+        </div>
+    </div>
+    <div class="list hide" id="type-archive">
+        <div class="header-line">
+            <div>Archives</div>
+        </div>
+        <div class="member-line" *ngIf="archives.length === 0"> Les archives ne contiennent pas de localisations </div>
+        <div *ngFor="let archive of archives">
+            <div class="member-line">
+                <div class="documents-main-info" (click)="onViewArchivedLocation(archive.toString())">
+                    <div class="name">
+                        {{archive}}
+                    </div>
+                </div>
+                <button class="archive-location-button" (click)="onAddToList(archive)">Désarchiver</button>
+            </div>
+        </div>
+    </div>
+</div>

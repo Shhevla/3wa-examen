@@ -1,0 +1,22 @@
+<p class="arrow-quit" (click)="sendToParent()">&#8592;</p>
+<p class="cabinet-name"> {{cabinet?.name?.toUpperCase()}}</p>
+<div class="message-container">
+    <div class="message-list" *ngIf="msglist != null">
+        <div   *ngFor="let msg of msglist?.message; let i = index">
+            <span class="message-display" [ngClass]="{'my-message' : msg.uid === uid}" *ngIf="msg != null">
+                <p class="initial-name" *ngIf="msg != null"> {{msg.sending.substr(0,2).toUpperCase()}} </p>
+                <div class="message-format" *ngIf="msg != null" (click)="showPopup(msg)">
+                    <p class="content-message"> {{msg.text}} <p>
+                    <p class="hour-message"> {{msg.hour}}</p>
+                </div>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="message-input">
+        <form (ngSubmit)="sendingMessage()">
+            <input class="input-submit" type="text" [(ngModel)]="sendMsg" name="inputName" placeholder="Entrez votre message">
+            <button class="button-submit" type="submit"></button>
+        </form>
+</div>
+<app-tchatbox-popup [visible]="popupVisible" [uidCab]="uidCab" [index]="indexSelectedMessage" [message]="selectedMessage" (popupClosed)="popupVisible=false"></app-tchatbox-popup>

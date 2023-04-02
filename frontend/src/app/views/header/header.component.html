@@ -1,0 +1,31 @@
+<header id="home-header">
+    <div class="container" id="login-container">
+        <button (click)="toggleMenu()">
+            <img id="menu-icon" src="../../../assets/ressources/icons/menu_icon.svg" alt="menu">
+        </button>
+    </div>
+    <a routerLink="/home" class="container" id="logo-container">
+        <img id="icon" src="../../../assets/ressources/icons/blue_logo_bagas.svg" alt="Logo Bagas">
+        <img id="text" src="../../../assets/ressources/icons/bagas-sante.svg" alt="Bagas santé">
+    </a>
+    <div class="container" id="link-container">
+        <a routerLink="/auth/signin" class="header-button" *ngIf="!isAuth">Se connecter</a>
+        <a routerLink="/auth/signup" class="header-button" *ngIf="!isAuth">S'inscrire</a>
+        <div class="profile-dropdown" *ngIf="isAuth">
+            <!-- <div class="dropdown-button">Profile</div> -->
+            <div class="dropdown-container">
+                <a (click)="goToProfile()" class="header-button">Modifier le profile</a>
+                <a (click)="logout()" class="header-button">Se déconnecter</a>
+            </div>
+        </div>
+        <a routerLink="/board" class="header-button" *ngIf="isAuth">Accueil</a>
+    </div>
+</header>
+<div class="menu-container" [style.max-width]="size">
+    <div class="menu">
+        <a routerLink="/auth/signin" class="button" *ngIf="!isAuth">Se connecter</a>
+        <a routerLink="/auth/signup" class="button" *ngIf="!isAuth">S'inscrire</a>
+        <a routerLink="/board" class="button" *ngIf="isAuth">Accueil</a>
+        <!-- <a (click)="goToProfile()" class="button" *ngIf="isAuth">Profile</a> -->
+    </div>
+</div>

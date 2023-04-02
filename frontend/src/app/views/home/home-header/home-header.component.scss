@@ -1,0 +1,144 @@
+header {
+    width: 100%;
+    position: fixed;
+    padding: 15px 0;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    transition: all ease-out .25s;
+    background: #23232d;
+
+    .sign-up-button-container {
+        position: relative;
+
+        .sign-in-container {
+            position: absolute;
+        }
+    }
+}
+
+.hide, #sign-in-container, #sign-up-container {
+    display: none;
+}
+
+.modal-background {
+    z-index: 6;
+    position: fixed;
+    display: none;
+    justify-content: center;
+    background-color: rgba($color: #000000, $alpha: 0.2);
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 20px;
+    left: 0;
+    top: 0;
+}
+
+header>div {
+    width: 33%;
+}
+
+header img {
+    width: 180px;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+}
+
+#logo-container {
+    justify-content: center;
+    flex-direction: row;
+}
+
+#logo-container #icon {
+    width: 50px;
+    padding: 0 10px;
+    display: none;
+    @media screen and (min-width: 1024px) {
+        display: initial;
+    }
+}
+
+#logo-container #text {
+    width: 120px;
+    @media screen and (min-width: 1024px) {
+        width: 140px;
+    }
+}
+
+#menu-icon {
+    width: 40px;
+    margin-right: 10px;
+    @media screen and (min-width: 1024px) {
+        display: none;
+    }
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+//! MENU //
+.menu-container {
+    position: fixed;
+    padding-top: 81px;
+    height: 100%;
+    left: 0;
+    z-index: 2;
+    transition: all ease-in-out 0.25s;
+    @media screen and (min-width: 1024px) {
+        padding-top: 106px;
+    }
+}
+
+.menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #23232D;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.button {
+    color: #fff;
+    padding: 20px 50px;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #587285;
+}
+
+#link-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 30px;
+    font-size: 0.9em;
+    @media screen and (min-width: 1280px) {
+        font-size: 1em;
+    }
+}
+
+#link-container>a {
+    display: none;
+    @media screen and (min-width: 1024px) {
+        display: block;
+    }
+}
+
+.header-button {
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.3);
+    padding: 0 10px;
+    text-transform: uppercase;
+}
+
+.header-button:hover {
+    cursor: pointer;
+}

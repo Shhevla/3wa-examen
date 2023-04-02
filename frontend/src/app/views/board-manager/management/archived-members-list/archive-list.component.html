@@ -1,0 +1,139 @@
+<!-- <app-header></app-header> -->
+<div class="global-container">
+
+    <!-- MODAL -->
+    <div>
+        <div id="edit-modal" (click)="hideAll()"></div>
+        <div>
+            <div class="modal" id="delete-modal" (click)="hideModal('delete-modal', 'delete-modal-content')">
+            </div>
+            <div class="modal-content" id="delete-modal-content">
+                <div class="modal-title" *ngIf="selectedMember">Voulez-vous supprimer {{selectedMember!.firstName}} ?</div>
+                <button class="confirmation-button" (click)="onDeleteArchivedMember();hideModal('delete-modal', 'delete-modal-content')">Supprimer</button>
+                <button class="confirmation-button" (click)="hideModal('delete-modal', 'delete-modal-content')">Annuler</button>
+            </div>
+        </div>
+        <div>
+            <div class="modal" id="archive-modal" (click)="hideModal('archive-modal-content', 'archive-modal')">
+            </div>
+            <div class="modal-content" id="archive-modal-content">
+                <div class="modal-title" *ngIf="selectedMember">Voulez-vous désarchiver {{selectedMember!.firstName}} ?</div>
+                <button class="confirmation-button" (click)="onAddToList();hideModal('archive-modal-content', 'archive-modal')">Désarchiver</button>
+                <button class="confirmation-button" (click)="hideModal('archive-modal-content', 'archive-modal')">Annuler</button>
+            </div>
+        </div>
+        <div>
+            <div class="modal" id="member-form-background-modal" (click)="hideModal('member-form-content-modal', 'member-form-background-modal')">
+            </div>
+            <div class="member-form" id="member-form-content-modal">
+                <app-member-form></app-member-form>
+            </div>
+        </div>
+        <div>
+            <div class="modal" id="document-modal" (click)="hideModal('document-modal-content', 'document-modal')">
+            </div>
+            <div class="modal-content" id="document-modal-content">
+                <div class="modal-document-image-container">
+                    <div *ngIf="documents.length === 0">Il n'y a aucun fichier pour {{selectedMember?.firstName}}</div>
+                    <div *ngFor="let document of documents">
+                        <div class="document-image">
+                            <button class="delete-button" (click)="removeFile(document)"></button>
+                            <a [href]="document.url" target="_blank">
+                                <img [src]="document.url" [alt]="document.name">
+                            </a>
+                            <div>{{document.name}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL -->
+
+    <div class="sub-header">
+    </div>
+    <div class="categories-container">
+        <div class="categories-button-container">
+            <button (click)="goToLocation('location')">Liste</button>
+            <button class="categories-button-selected" (click)="goToLocation('archive')">Archive</button>
+        </div>
+        <div class="search-bar-container">
+            <input class="search-bar" id="members-search-bar" placeholder="Rechercher" type="search">
+            <div (click)="showSearchedMembers($event)" class="search-button"></div>
+        </div>
+    </div>
+    <div class="board-container" id="main-board">
+        <div class="board-header">
+            <div class="identity-container">Nom</div>
+            <div class="documents-container">
+                <div class="document-zone">Praticiens facturés</div>
+                <div class="document-zone">Carte Vitale</div>
+                <div class="document-zone">Carte Mutuelle</div>
+                <div class="document-zone">Ordonnance</div>
+            </div>
+            <div class="comments-container">Commentaires</div>
+        </div>
+        <div id="board-line-container" class="board-line-container">
+            <div class="empty-board" *ngIf="archivedMembers.length === 0">Les archives sont vides</div>
+            <div class="board-line" *ngFor="let member of archivedMembers; let i = index">
+                <div class="identity-container">
+                    <div *ngIf="member.gender == 0" style="color: #2e6a90">{{ member.firstName }}</div>
+                    <div *ngIf="member.gender == 1" style="color: #e7335d">{{ member.firstName }}</div>
+                    <div *ngIf="member.gender != 0 && member.gender != 1">{{ member.firstName }}</div>
+                </div>
+                <div class="icons-container">
+                    <button class="document-button" (click)="showDocumentModal('document-modal-content', 'document-modal', member);getAllFiles()"></button>
+                    <button class="archive-button" (click)="setSelectedMember(member);showModal('archive-modal', 'archive-modal-content')"></button>
+                    <button class="delete-button" (click)="setSelectedMember(member);showModal('delete-modal', 'delete-modal-content')"></button>
+                </div>
+                <div class="documents-container">
+                    <div class="document-zone">
+                        <div class="documents-informations-container">
+                            <div class="document-information doc-unused" *ngIf="member.invoice[0] == -1"><div class="emptyIcon"></div></div>
+                            <div class="document-information doc-available" *ngIf="member.invoice[0] == 0"><div class="availableIcon"></div></div>
+                            <div class="document-information doc-missing" *ngIf="member.invoice[0] == 1"><div class="missingIcon"></div></div>
+                        </div>
+                    </div>
+                    <div class="document-zone">
+                        <div class="documents-informations-container">
+                            <div class="document-information doc-unused" *ngIf="member.vitalCard == -1"><div class="emptyIcon"></div></div>
+                            <div class="document-information doc-available" *ngIf="member.vitalCard == 0"><div class="availableIcon"></div></div>
+                            <div class="document-information doc-missing" *ngIf="member.vitalCard == 1"><div class="missingIcon"></div></div>
+                        </div>
+                    </div>
+                    <div class="document-zone">
+                        <div class="documents-informations-container">
+                            <div class="document-information doc-unused" *ngIf="member.mutualCard == -1"><div class="emptyIcon"></div></div>
+                            <div class="document-information doc-available" *ngIf="member.mutualCard == 0"><div class="availableIcon"></div></div>
+                            <div class="document-information doc-missing" *ngIf="member.mutualCard == 1"><div class="missingIcon"></div></div>
+                        </div>
+                    </div>
+                    <div class="document-zone">
+                        <div class="documents-informations-container">                   
+                            <div class="document-information doc-unused" *ngIf="member.prescription == -1"><div class="emptyIcon"></div></div>
+                            <div class="document-information doc-available" *ngIf="member.prescription == 0"><div class="availableIcon"></div></div>
+                            <div class="document-information doc-missing" *ngIf="member.prescription == 1"><div class="missingIcon"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comments-container">
+                    <div class="comment-wrapper">
+                        <div class="comment" [id]="i+ '-comment'">{{ member.comments }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-board-line-container">
+        <div class="practitioners-container">
+        </div>
+        <div class="page-button-container">
+            <button class="left-button" (click)="pageUp()"></button>
+            <button class="right-button" (click)="pageDown()"></button>
+        </div>
+    </div>
+    <div id="switch-button-container" class="switch-button-container">
+        <button (click)="addClassForDisplayMode()"></button>
+        <button class="low-opacity" (click)="removeClassForDisplayMode()"></button>
+    </div>
+</div>

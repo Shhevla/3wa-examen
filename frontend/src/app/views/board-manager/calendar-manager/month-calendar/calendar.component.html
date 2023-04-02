@@ -1,0 +1,99 @@
+<!-- <div class="global-container">
+    <div class="modal">
+        <div id="appointment-form-modal-back" (click)="hideModal('appointment-form-modal','appointment-form-modal-back')"></div>
+        <div id="appointment-form-modal">
+            <app-calendar-modal (hideModal)="hideModal('appointment-form-modal','appointment-form-modal-back')"></app-calendar-modal>
+        </div>
+        <button class="show-modal-button" (click)="showModal('appointment-form-modal','appointment-form-modal-back')">+</button>
+    </div>
+    <div class="calendar-header">
+        <div class="month-display">
+            <div class="month-button" (click)="decreaseMonth()"></div>
+            <div class="month-button" (click)="addMonth()"></div>
+            <div class="month-string">{{ monthToShow }} {{ yearToShow }}</div>
+        </div>
+        <div class="hours-display">
+            <div class="hours-string">
+                <select name="firstHour" id="fstHour" (change)="setFirstHour($event)">
+                    <option [value]="">{{this.firstHour}}H</option>
+                    <option [value]="i" *ngFor="let line of numSequence(24); let i = index">{{i}}H</option>
+                </select> 
+                <span> - </span> 
+                <select name="lastHour" id="lstHour" (change)="setLastHour($event)">
+                    <option [value]="">{{this.lastHour}}H</option>
+                    <option [value]="this.firstHour + i + 1" *ngFor="let line of numSequence(24 - this.firstHour); let i = index">{{this.firstHour + i + 1}}H</option>
+                </select> 
+            </div>
+        </div>
+    </div>
+    <div class="calendar-container">
+        <div class="day-calendar">
+            <div class="day-date-case">
+                {{dayToShow}}
+            </div>
+            <div class="appointments-case">
+                <div class="times-container">
+                    <span class="times-line" *ngFor="let line of numSequence(this.lastHour -  this.firstHour); let i = index">
+                        <div class="time-button" [style.height]="this.setLineSize()" (click)="mouseMoved(this.firstHour + i, ':00')">{{this.firstHour + i}}:00</div>
+                        <div class="time-button" [style.height]="this.setLineSize()" (click)="mouseMoved(this.firstHour + i, ':15')">{{this.firstHour + i}}:15</div>
+                        <div class="time-button" [style.height]="this.setLineSize()" (click)="mouseMoved(this.firstHour + i, ':30')">{{this.firstHour + i}}:30</div>
+                        <div class="time-button" [style.height]="this.setLineSize()" (click)="mouseMoved(this.firstHour + i, ':45')">{{this.firstHour + i}}:45</div>
+                    </span>
+                </div>
+<div class="timegrid-container" id="grid-container" (click)="mouseMoved($event)">
+                    <div class="timegrid-line" *ngFor="let line of numSequence(24); let i = index"><div class="sub-timegrid-line"></div></div>
+                </div>
+                <div class="appointments-container">
+                    <div class="empty" *ngFor="let appointment of appointments">
+                        <div class="appointment" *ngIf="appointment.day == dateString  && isAppointmentInRange(appointment.startTime)" [style.background-color]="appointment.color"
+                        [style.height]="setAppointmentSize(appointment.startTime, appointment.endTime) + 'vh'" [ngStyle]="{'transform': 'translateY(' + getActualAppointmentHeight(appointment.startTime) + 'vh)'}">
+                            <div class="delete-button" (click)="deleteAppointment(appointment.title, appointment)"></div>
+                            {{appointment.title}}
+                            <div class="time">
+                                {{appointment.startTimeToDisplay}}-{{appointment.endTimeToDisplay}}
+                            </div>
+                            <div class="description">
+                                {{ appointment.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="calendar">
+            <div class="date-case">Lundi</div>
+            <div class="date-case">Mardi</div>
+            <div class="date-case">Mercredi</div>
+            <div class="date-case">Jeudi</div>
+            <div class="date-case">Vendredi</div>
+            <div class="date-case">Samedi</div>
+            <div class="date-case">Dimanche</div>
+            <div class="case other-month" *ngFor="let day of firstGlobalDays" (click)="showLastMonth(day)">
+                <div>
+                    {{ day }}
+                </div>
+            </div>
+            <div class="case" *ngFor="let day of globalDays" (click)="showDay(day)">
+                <div>
+                    {{ day }}
+                    <div class="calendar-appointments-container" *ngFor="let appointment of appointments">
+                        <div class="appointment appointment-1" *ngIf="appointment.day == getActualDay(day)" [style.background-color]="appointment.color">
+                            {{appointment.title}}
+                            <div class="time">
+                                {{appointment.startTimeToDisplay}}-{{appointment.endTimeToDisplay}}
+                            </div>
+                            <div class="description">
+                                {{ appointment.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="case other-month" *ngFor="let day of lastGlobalDays" (click)="showNextMonth(day)">
+                <div>
+                    {{ day }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

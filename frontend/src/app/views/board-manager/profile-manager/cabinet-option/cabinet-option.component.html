@@ -1,0 +1,40 @@
+<div class="global-container">
+    <div class="container" *ngIf="run == true">
+        <div class="elements-container">
+            <div *ngFor="let data of worker; let index = index">
+                <div class="sub-elements-container" *ngIf="cabinet != undefined && cabinet.practitioners[index] != undefined">
+                    <div class="elements name">{{data.information.fname}} {{data.information.lname}} </div>
+                    <div class="input-container">
+                        <input class="elements button" type="color" [(ngModel)]="cabinet.practitioners[index].color">
+                        <select class="elements role-picker" name="type" [(ngModel)]="cabinet.practitioners[index].role">
+                            <option *ngFor="let r of role" [ngValue]="r.name">{{r.name}}</option>
+                        </select>
+                        <button class="elements button cross" (click)="showDelWorkerModal(workerId[index])">&#10006;</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="label">Praticiens en attente</div>
+                <div *ngFor="let data of pendingWorker">
+                    <div class="sub-elements-container">
+                        <div class="elements name">{{data}}</div>
+                    </div>
+                </div>
+                <div *ngIf="pendingWorker == undefined">
+                    <div class="sub-elements-container">
+                        <div class="elements name">Aucun praticien en attente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="invitation-container">
+            <div class="label">Inviter un praticien</div>
+            <div class="input-container">
+                <input class="elements text-input" [(ngModel)]="addWorker" placeholder="Email du praticien">
+                <button class="elements invitation-button" (click)="inviteWorker()">Inviter</button>
+            </div>
+        </div>
+        <button class="modify-button" (click)="addModif()">Enregistrer</button>
+        <button class="delete-button" (click)="showDelCabinetModal()">Supprimer</button>
+    </div>
+</div>

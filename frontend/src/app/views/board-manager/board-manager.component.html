@@ -1,0 +1,72 @@
+<div class="board-chooser-container">
+    <div class="bagas-logo-container">
+        <div class="button-container" (click)="travelToModule('board')">
+            <div class="bagas-logo"></div>
+            <div class="bagas-text"></div>
+        </div>
+    </div>
+    <div class="module-chooser">
+        <button class="module-button" (click)="travelToModule('location')">
+            <div class="icon officeIcon"></div>
+            <span class="button-label">Cabinet</span>
+        </button>
+        <span class="line"></span>
+        <button class="module-button" (click)="travelToModule('profile')">
+            <div class="icon profileIcon"></div>
+            <span class="button-label">Profil</span>
+        </button>
+        <span class="line"></span>
+        <button class="module-button">
+            <div class="icon contractIcon"></div>
+            <span class="button-label">Contrat</span>
+        </button>
+        
+    </div>
+    <div class="board-chooser">
+        <app-tchatbox></app-tchatbox>
+        <button class="header-button notification-button">
+            <div class="notification-mark" *ngIf="this.notifications.length != 0"></div>
+            <div class="icon notificationIcon"></div>
+            <span class="notifications-container">
+                <div class="notifications-title">
+                    <span></span>
+                    <div>Notifications</div>
+                    <div class="refresh-button" (click)="refreshNotifications()"></div>
+                </div>
+                <div class="notifications" *ngIf="this.notifications.length == 0">
+                    <div class="notification-text">Vous n'avez pas de notifications pour le moment</div>
+                </div>
+                <div class="notifications" *ngFor="let notification of this.notifications; let i = index">
+                    <div class="notification-text">Vous avez été invité au cabinet <br> {{notification.name}}</div>
+                    <div class="notifications-button-container">
+                        <button class="accept-button" (click)="acceptInvitation(notification)">Accepter</button>
+                        <button class="cancel-button" (click)="cancelInvitation(notification)">Refuser</button>
+                    </div>
+                </div>
+            </span>
+        </button>
+        <button class="header-button" (click)="this.authService.signOutUser()">
+            <div class="icon logoutIcon"></div>
+            <span class="button-label">Se déconnecter</span>
+        </button>
+    </div>
+</div>
+<div class="modules-container" id="only-management">
+    <button class="module-button">
+        <select class="dropdown-container" (click)="onChangeLocation($event)">
+            <option *ngFor="let location of allCabinet; let index = index" [value]="index" class="dropdown-button">{{location.name}}</option>
+        </select>
+        <div class="icon locationIcon"></div>
+    </button>
+    <button class="module-button" (click)="travelToModule('location')">
+        <span class="left-button-label">Patients</span>
+        <div class="icon officeIcon"></div>
+    </button>
+    <button class="module-button" (click)="travelToModule('calendar')">
+        <span class="left-button-label">Calendrier</span>
+        <div class="icon profileIcon"></div>
+    </button>
+</div>
+<body class="body-router">
+    <router-outlet></router-outlet>
+</body>

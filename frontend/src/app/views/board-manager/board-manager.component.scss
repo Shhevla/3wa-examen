@@ -1,0 +1,444 @@
+.board-chooser-container {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 10vh;
+    max-height: 50px;
+    z-index: 10;
+    justify-content: space-between;
+    background-color: #23232D;
+
+    a {
+        text-decoration: none;
+    }
+
+    .bagas-logo-container {
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        width: 20%;
+        
+        .bagas-logo {
+            height: 100%;
+            width: 28px;
+            margin-right: 6px;
+            background-image: url(../../../assets/ressources/icons/blue_logo_bagas.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+        .bagas-text {
+            display: none;
+            height: 100%;
+            width: 180px;
+            background-image: url(../../../assets/ressources/images/Bagas-sante-horizontal.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            @media screen and (min-width: 600px) {
+                display: block;
+            }
+        }
+        .button-container {
+            height: 100%;
+            box-sizing: border-box;
+            display: flex;
+            padding: 10px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .board-chooser {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+        width: 20%;
+        .header-button {
+            height: 100%;
+            width: 50px;
+            border: none;
+            background-color: transparent;
+            border-radius: 10px;
+
+            @media screen and (min-width: 600px) {
+                right: 15px;
+            }
+        
+            &:hover {
+                background-color: #285069;
+                cursor: pointer;
+            }
+
+            .icon {
+                background-color: transparent;
+                background-image: url(../../../assets/ressources/icons/logout.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                margin: auto;
+                width: 50%;
+                height: 50%;
+
+                @media screen and (min-width: 1024px) {
+                    width: 65%;
+                    height: 65%;
+                }
+            }
+
+            .notificationIcon {
+                background-image: url(../../../assets/ressources/icons/notificationIcon.png);
+            }
+
+            .button-label {
+                font-size: 0.7em;
+                right: 0;
+                position: absolute;
+                color: var(--base-color);
+                white-space: nowrap;
+                z-index: -1;
+                transform: translate(0, 10px);
+                z-index: 100;
+                display: none;
+        
+                @media screen and (min-width: 600px) {
+                    display: none;
+                    font-size: 1em;
+                }
+            }
+        
+            &:hover{
+                cursor: pointer;
+                background-color: #285069;
+        
+                .button-label {
+                    display: initial;
+                }
+            }
+        }
+
+        .notification-button {
+            position: relative;
+
+            .notification-mark {
+                background-color: #E34258;
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                border-radius: 50px;
+                right: 5px;
+                top: 5px;
+            }
+
+            &:hover > .notifications-container {
+                display: flex;
+                cursor: default;
+            }
+
+            .notifications-container {
+                min-width: 320px;
+                right: 0;
+                background-color: white;
+                box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.4);
+                border-radius: 10px;
+                display: none;
+                position: absolute;
+                flex-direction: column;
+                justify-content: center;
+                
+                .notifications-title {
+                    background-color: var(--base-color);
+                    border-radius: 10px 10px 0 0;
+                    padding: 5px;
+                    text-transform: uppercase;
+                    color: white;
+                    display: flex;
+                    justify-content: space-between;
+
+                    span {
+                        width: 15px;
+                        height: 15px;
+                    }
+
+                    .refresh-button {
+                        background-image: url(../../../assets/ressources/icons/refreshIcon.png);
+                        background-position: center;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        width: 15px;
+                        height: 15px;
+                        margin-right: 5px;
+
+                        &:hover {
+                            cursor: pointer;
+                            opacity: 0.8;
+                        }
+                    }
+                }
+
+                .notifications{
+                    border-bottom: 1px solid var(--base-color);
+                    margin: 5px;
+                    padding: 5px;
+
+                    .notification-text {
+                        margin-bottom: 5px;
+                    }
+                    .notifications-button-container{
+                        display: flex;
+                        justify-content: center;
+                        
+                        button {
+                            border-radius: 5px;
+                            border: none;
+                            color: white;
+                            padding: 3px 8px;
+                            margin: 4px 2px;
+
+                            &:hover {
+                                opacity: 0.8;
+                                cursor: pointer;
+                            }
+                        }
+
+                        .accept-button {
+                            background-color: #02CA72;
+                        }
+                        .cancel-button {
+                            background-color: #E34258;
+                        }
+                    }
+                }
+                .notifications:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+}
+
+.module-chooser {
+    gap: 0px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 10px;
+
+    @media screen and (min-width: 600px) {
+        gap: 2px;
+    }
+
+    .line {
+        background-color: rgba(255, 255, 255, 0.651);
+        height: 70%;
+        margin: auto;
+        width: 1px;
+    }
+}
+
+.module-dropdown-button:hover {
+    .dropdown-container {
+        display: block;
+    }
+}
+
+.module-button {
+    background-color: transparent;
+    border-radius: 5px;
+    height: 100%;
+    width: 30px;
+    min-width: 30px;
+    color: white;
+    border: none;
+    font-size: 3em;
+    padding: 3px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    position: relative;
+
+    @media screen and (min-width: 600px) {
+        height: 100%;
+        width: 30px;
+        min-width: 30px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        height: 100%;
+        width: 50px;
+        min-width: 50px;
+    }
+
+    .icon {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin: auto;
+        width: 70%;
+        height: 70%;
+    }
+
+    .officeIcon {
+        background-image: url(../../../assets/ressources/icons/officeIcon.png);
+    }
+    .profileIcon {
+        background-image: url(../../../assets/ressources/icons/profileIcon.png);
+    }
+    .contractIcon {
+        background-image: url(../../../assets/ressources/icons/contractIcon.png);
+    }
+
+    .button-label {
+        font-size: 0.1em;
+        position: absolute;
+        color: var(--base-color);
+        white-space: nowrap;
+        z-index: -1;
+        transform: translate(-50%, 10px);
+        z-index: 100;
+        display: none;
+
+        @media screen and (min-width: 600px) {
+            font-size: 0.25em;
+        }
+        @media screen and (min-width: 1024px) {
+            font-size: 0.35em;
+        }
+    }
+
+    &:hover{
+        cursor: pointer;
+        background-color: #285069;
+
+        .button-label {
+            display: initial;
+        }
+    }
+}
+
+.modules-container {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    left: -150px;
+    height: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 5px;
+    margin: auto;
+    z-index: 1;
+
+    .module-button {
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--base-color);
+        height: 70px;
+        width: 210px;
+        border-radius: 0 20px 20px 0;
+        color: white;
+        border: none;
+        font-size: 3em;
+        padding: 10px;
+        box-sizing: border-box;
+        text-transform: uppercase;
+        position: relative;
+        transition: all 0.2s;
+        
+
+        @media screen and (min-width: 1024px) {
+            height: 70px;
+            width: 210px;
+            border-radius: 0 20px 20px 0;
+        }
+
+        .left-button-label {
+            margin: auto 0;
+            text-align: center;
+            width: 130px;
+            overflow: hidden;
+            font-size: 0.2em;
+            font-weight: bolder;
+            white-space: nowrap;
+            z-index: 1;
+
+            @media screen and (min-width: 600px) {
+                font-size: 0.25em;
+            }
+            @media screen and (min-width: 1024px) {
+                font-size: 0.4em;
+            }
+        }
+
+        .icon {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            margin: auto 0;
+            width: 50px;
+            height: 50%;
+        }
+
+        .locationIcon {
+            background-image: url(../../../assets/ressources/icons/location.png);
+        }
+        .officeIcon {
+            background-image: url(../../../assets/ressources/icons/archive.png);
+        }
+        .profileIcon {
+            background-image: url(../../../assets/ressources/icons/calendarIcon.png);
+        }
+        .contractIcon {
+            background-image: url(../../../assets/ressources/icons/contractIcon.png);
+        }
+
+        &:hover{
+            cursor: pointer;
+            background-color: #285069;
+            transform: translateX(150px);
+
+            .button-label {
+                @media screen and (min-width: 600px) {
+                    display: initial;
+                }
+            }
+        }
+    }
+
+    .dropdown-container {
+        width: 130px;
+        height: 30px;
+        font-size: 0.2em;
+        margin: auto 0;
+        color: white;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid white;
+        text-align: center;
+        overflow: hidden;
+        font-weight: bolder;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: #285069;
+            cursor: pointer;
+        }
+
+        @media screen and (min-width: 600px) {
+            font-size: 0.25em;
+        }
+        @media screen and (min-width: 1024px) {
+            font-size: 0.4em;
+        }
+
+        .dropdown-button{
+            cursor: pointer;
+        }
+    }
+}
+
+.body-router {
+    position: relative;
+    z-index: 0;
+}

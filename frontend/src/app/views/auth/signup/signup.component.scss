@@ -1,0 +1,78 @@
+.container {
+    text-align: center;
+    display: flex;
+    left: 50%;
+    transform: translateX(-50%);
+    position: fixed;
+    flex-direction: column;
+    padding: 20px 20px;
+    margin: auto;
+    margin-top: 150px;
+    border-radius: 20px;
+    background-color: #23232D;
+    color: white;
+    white-space: nowrap;
+    z-index: 10;
+    gap: 10px;
+    @media screen and (min-width: 724px) {
+        width: initial;
+        padding: 20px 50px;
+    }
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.input-part {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+input {
+    border-radius: 10px;
+    margin-left: 15px;
+    padding-left: 5px;
+    border: none;
+    text-indent: 3px;
+}
+
+label {
+    font-size: 0.75em;
+    overflow: hidden;
+    @media screen and (min-width: 350px) {
+        font-size: 1em;
+    }
+}
+
+input:focus {
+    outline: none;
+}
+
+.button {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5px;
+    width: 100%;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: Montserrat-bold, sans-serif;
+    .google-icon {
+        margin-left: 2px;
+        background-image: url(../../../../assets/ressources/icons/GoogleLogo.png);
+        background-size: cover;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: var(--base-color);
+    color: white;
+}
