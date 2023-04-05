@@ -16,14 +16,14 @@ export class AppComponent {
   title = 'bagas-sante-web';
   constructor(private bnIdle: BnNgIdleService, private authService: AuthService, private router: Router) {
     const firebaseConfig = {
-      apiKey: "AIzaSyC_oQY_vWLvaleuC92WJzsaGjQuFryvqaI",
-      authDomain: "wa-test-bagas.firebaseapp.com",
-      databaseURL: "https://wa-test-bagas-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "wa-test-bagas",
-      storageBucket: "wa-test-bagas.appspot.com",
-      messagingSenderId: "892215932810",
-      appId: "1:892215932810:web:40ef5d067c0244b1bbba73",
-      measurementId: "G-PKME64FC30"
+        apiKey: "AIzaSyCTIh1DEYjrh9zs6U0XZ4vZSdYM4QjOKkA",
+        authDomain: "bagas-sante-63b61.firebaseapp.com",
+        databaseURL: "https://bagas-sante-63b61-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "bagas-sante-63b61",
+        storageBucket: "bagas-sante-63b61.appspot.com",
+        messagingSenderId: "43730415218",
+        appId: "1:43730415218:web:631fa5e339245b75df9ceb",
+        measurementId: "G-XYNLJ9BH6X"
 };
     this.bnIdle.startWatching(3600).subscribe((res) => {
         if (getAuth().currentUser?.uid) {

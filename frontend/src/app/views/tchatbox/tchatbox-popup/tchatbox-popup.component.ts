@@ -22,6 +22,7 @@ export class TchatboxPopupComponent implements OnInit {
     }
 
     activateModificationMessage() {
+        this.displayOptions = "menu";
         this.api.sendModification(this.uidCab, this.message!, this.index);
         this.popupClosed.emit(true);
     }
@@ -34,9 +35,9 @@ export class TchatboxPopupComponent implements OnInit {
     }
 
     activateDeleteMessage() {
-        console.log("delete");
+        this.displayOptions = "menu";
         this.api.sendDelete(this.uidCab, this.index);
-         this.popupClosed.emit(true);
+        this.popupClosed.emit(true);
     }
 
     returnToMenu() {

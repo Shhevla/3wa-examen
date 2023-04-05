@@ -29,7 +29,7 @@
         <span class="end-line"></span>
     </div>
     <div *ngSwitchCase="'tchat'">
-        <app-tchatboxmessage [msglist]="msglist[value_cab]" [cabinet]="cabinets[value_cab]" [uidCab]="this.uid[value_cab]"(displayChange)="getOutputVal($event)"></app-tchatboxmessage>
+        <app-tchatboxmessage [msglist]="msglist[value_cab]" [cabinet]="cabinets[value_cab]" [uidCab]="this.uid[value_cab]" (displayChange)="getOutputVal($event)"></app-tchatboxmessage>
     </div>
 </div>
   

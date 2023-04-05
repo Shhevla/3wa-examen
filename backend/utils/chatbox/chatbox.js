@@ -22,6 +22,8 @@ export async function writeTchat(uidCab, uid, txt) {
             worker[1][i] = 1
     }
     await get(refdb).then((data) => {if (data.val() !== null) save = data.val().message;});
+    if (save === undefined) 
+        save = [];
     save.push(txt);
     let json = {"worker": worker[0], "workerNotif": worker[1], "message": save};
     set(refdb, json);
@@ -37,7 +39,7 @@ export async function modifmessage(uidCab, uid, txt, index) {
 
 export async function deleteMessage(uidCab, uid, index) {
     let database = getDatabase();
-    console.log("Modification de la base de donnée")
+    console.log("Suppresion de la base de donnée")
     let refdb = ref(database, 'message/' + uidCab + '/message/' + index);
     remove(refdb);
 }
