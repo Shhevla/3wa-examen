@@ -264,6 +264,7 @@ export async function pendingInvitation(email, path, idCab) {
         if (data.data().invitation != undefined) nbPrac = data.data().practitioners.length + data.data().invitation.length; else nbPrac = data.data().practitioners.length; });
     await admin.auth().getUserByEmail(email).then((data) => {uid = data.uid}).catch((error) => {uid = "no found"; console.log(error)})
     await readProfile(uid,"d").then((data) => {saveProfile = data.data()});
+    console.log(email);
     if (saveProfile != undefined) {
         saveProfile.cabinet.forEach(element => {
             if (element == path + idCab)
